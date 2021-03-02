@@ -1,0 +1,660 @@
+@import "./variables.scss";
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: $white-color;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+    transition: all 0.5s ease;
+}
+
+figure {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 80%;
+    margin: 0 auto;
+    @media #{$Small-Laptop} {   
+        max-width: 100%;
+        padding: 0 20px;
+    }
+}
+
+@mixin primary-btn  {
+    background: $darkgray-26;
+    color: $white-color;
+    font-size: 20px;
+    line-height: 22px;
+    padding: 13px 20px;
+    font-weight: 400;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: none;
+    outline: none;
+    border: none;
+    transition: all 0.5s ease;
+    &:hover {
+        background: $darkgray-38;
+    }
+}
+
+.primary-btn {
+    @include primary-btn();
+}
+
+
+.form-group {
+    .form-control {
+        background: transparent;
+        box-shadow: none;
+        outline: none;
+        border: 1px solid $white-color;
+        padding: 8px 12px;
+        color: $white-color;
+        font-size: 21px;
+        line-height: 22px;
+        font-weight: 600;
+        width: 100%;
+        &::placeholder {
+            color: $white-color;
+            opacity: 1; 
+        }
+        &:-ms-input-placeholder {
+            color: $white-color;
+        }
+        &::-ms-input-placeholder { 
+            color: $white-color;
+        }
+    }
+}
+
+body.menuopen {
+    overflow: hidden;
+  }
+
+/** header **/
+header {
+    background: $white-color;
+    .header-top {
+        background: $white-color;
+        display: flex;
+        @media #{$PhoneL} {  
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .header-topleft-col {
+            position: relative;
+            @media #{$PhoneL} {  
+                flex: 0 0 100%;
+                width: 100%;
+            }
+            .logo {
+                max-width: 260px;
+                @media #{$PhoneL} {  
+                    max-width: 100%;
+                    width: 100%;
+                    text-align: center;
+                }
+                figure {
+                    padding: 5px 0 0; 
+                    img {
+                        @media #{$PhoneL} { 
+                            max-width: 160px;
+                        }
+                    }
+                }
+            }
+        }
+        .header-topright-col {
+            flex: 1 1 auto;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 100px 100%);
+            @media #{$IpadP} {  
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                margin-left: 10px;
+            }
+            @media #{$PhoneL} {  
+                flex: 0 0 100%;
+                width: 100%;
+                margin-left: 0;
+            }
+            .header-topmenubar {
+                background: $black-color;
+                padding: 24px 16%;
+                @media #{$PhoneL} { 
+                    padding: 18px 0;
+                }
+                ul {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    @media #{$PhoneL} { 
+                        justify-content: center;
+                    }
+                    li {
+                        padding: 0 8px;
+                        a {
+                            color: $white-color;
+                            display: flex;
+                            align-items: center;
+                            .homeicon {
+                                background: url(../assets/ico-home.png) no-repeat center center;
+                                background-size: 15px;
+                                width: 20px;
+                                height: 20px;
+                                display: inline-block;
+                                margin-right: 8px;
+                            }
+                            .usericon {
+                                background: url(../assets/ico_user.svg) no-repeat center center;
+                                background-size: 14px;
+                                width: 20px;
+                                height: 20px;
+                                display: inline-block;
+                                margin-right: 8px;
+                            }
+                            .ordericon {
+                                background: url(../assets/ico_shopping.png) no-repeat center center;
+                                background-size: 20px;
+                                width: 20px;
+                                height: 20px;
+                                display: inline-block;
+                                margin-right: 8px;
+                            }
+                            span {
+                                color: $white-color;
+                                font-size: 16px;
+                                line-height: 20px;
+                                cursor: pointer;
+                                font-weight: 400;
+                                white-space: nowrap;
+                            }
+                        }
+                    }
+                }
+            }
+            .header-top-search-cart-block {
+                background: $primary-color;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                padding: 30px 16%;
+                position: relative;
+                overflow: hidden;
+                &::before {
+                    content: '';
+                    background:  url(../assets/shape_img.png) no-repeat 0 0;
+                    background-size: 220px;
+                    position: absolute;
+                    left: 22px;
+                    top: -1px;
+                    width: 220px;
+                    height: 110px;
+                    @media #{$IpadP} { 
+                        left: -80px;
+                    }
+                }
+                &::after {
+                    content: '';
+                    background:  url(../assets/ico-car-whell.png) no-repeat 0 0;
+                    background-size: 135px;
+                    position: absolute;
+                    left: 200px;
+                    right: auto;
+                    width: 135px;
+                    height: 83px;
+                    margin: 0 auto;
+                    top: 0;
+                }
+                @media #{$PhoneL} { 
+                    padding: 20px 8px;
+                }
+                .form-group {
+                    width: 100%;
+                    max-width: 552px;
+                    margin-right: 88px;
+                    position: relative;
+                    @media #{$Small-Laptop} { 
+                        max-width: 300px;
+                        margin-right: 40px;
+                    }
+                    @media #{$IpadP} { 
+                        max-width: 100%;
+                        margin-right: 20px;
+                    }
+                    .form-control {
+                        font-size: 18px;
+                        height: 44px;
+                        border-radius: 2px;
+                        overflow: hidden;
+                        font-weight: 400;
+                    }
+                    .search-icon {
+                        background: $white-color url(../assets/ico-search.png) no-repeat center center;
+                        background-size: 19px;
+                        width: 44px;
+                        height: 44px;
+                        display: inline-block;
+                        position: absolute;
+                        right: 0;
+                        cursor: pointer;
+                        border-radius: 2px;
+                    }
+                }
+                .cartlist {
+                    position: relative;
+                    &::after {
+                        content: '';
+                        background:  url(../assets/ico-car-whell-2.png) no-repeat 0 0;
+                        background-size: 135px;
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        width: 135px;
+                        height: 83px;
+                        margin:0 auto;
+                        top: 0;
+                    }
+                    a {
+                        display: flex;
+                        align-items: center;
+                        z-index: 1;
+                        position: relative;
+                    .carticon {
+                        background: url(../assets/ico_cart.svg) no-repeat 0 0;
+                        background-size: 45px;
+                        margin-right: 13px;
+                        width: 48px;
+                        height: 48px;
+                        flex: 0 0 48px;
+                        display: inline-block;
+                        cursor: pointer;
+                        @media #{$IpadP} { 
+                            width: 30px;
+                            height: 30px;
+                            flex: 0 0 30px;
+                            background-size: 24px;
+                        }
+                    }
+                    span {
+                        color: $white-color;
+                        font-size: 22px;
+                        line-height: 24px;
+                        letter-spacing: 0.55px;
+                        cursor: pointer;
+                        font-weight: 600;
+                        white-space: nowrap;
+                        @media #{$PhoneL} { 
+                            font-size: 16px;
+                        }
+                    }
+                }
+                }
+            }
+        }
+    }
+    .header-navigation {
+        background: $black-color;
+        padding: 27px 20px;
+        @media #{$IpadP} {
+            padding: 10px;
+        }
+        .menuicon {
+            display: none;
+            .btn-menu {
+              background: transparent url(../assets/ico_menu.svg) no-repeat 0 0;
+              background-size: 24px;
+              width: 24px;
+              height: 24px;
+              display: block;
+              box-shadow: none;
+              border: none;
+              outline: none;
+              cursor: pointer;
+            }
+            @media #{$IpadP} {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                padding: 5px 0 0;
+            }
+        }
+        ul {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            .header-closeicon {
+                display: none;
+                align-items: center;
+                justify-content: flex-end;
+                width: 100%;
+                height: 55px;
+                @media #{$IpadP} {
+                    display: flex;
+                }
+                .btn-close {
+                    box-shadow: none;
+                    border: none;
+                    outline: none;
+                    background: transparent url(../assets/ico_close.svg) no-repeat 0 0;
+                    cursor: pointer;
+                    width: 20px;
+                    height: 20px;
+                    max-width: 20px;
+                    max-height: 20px;
+                    background-size: 16px;
+                    text-align: center;
+                }
+            }
+           
+            @media #{$IpadP} {
+                display: block;
+                background: $black-color;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 10000;
+                transition: all 0.3s ease-in-out;
+                transform-origin: top right;
+                transform: scaleY(0);
+                padding: 20px;
+                text-align: center;
+                &.open {
+                  transform: scaleY(1);
+                  height: 100%;
+                  overflow-y: auto;
+                }
+              }
+            li {
+                padding: 5px 20px;
+                white-space: nowrap;
+                @media #{$IpadP} {
+                    padding: 15px 0;
+                }
+                a {
+                    font-size: 20px;
+                    line-height: 22px;
+                    font-weight: 500;
+                    color: $white-color;
+                    text-transform: uppercase;
+                    cursor: pointer;
+                    &:hover {
+                        color: $lightgray-e3;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/** hero banner **/
+.hero-banner-section {
+    background: $darkgray-38 url(../assets/banner-img.png) no-repeat 0 0;
+    background-size: cover;
+    width: 100%;
+    height: 725px;
+    max-height: 725px;
+    @media #{$Small-Desktop} {  
+        height: 625px;
+        max-height: 625px;
+    }
+    @media #{$Small-Laptop} {  
+        height: 525px;
+        max-height: 525px;
+    }
+    @media #{$PhoneL} {  
+        height: 425px;
+        max-height: 425px;
+    }
+    .hero-banner-content {
+        padding-top: 80px;
+        text-align: center;
+        @media #{$PhoneL} {  
+            padding-top: 50px;
+        }
+        h1 {
+            color: $white-color;
+            font-size: 50px;
+            line-height: 70px;
+            letter-spacing: 1.25px;
+            font-weight: 600;
+            @media #{$Small-Laptop} {  
+                font-size: 38px;
+                line-height: 50px;
+            }
+            @media #{$PhoneL} {  
+                font-size: 32px;
+                line-height: 40px;
+            }
+            span {
+                display: block;
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+/** search block **/
+.search__block {
+    width: 100%;
+    max-width: 75%;
+    padding: 38px 0 49px;
+    background: $primary-color;
+    position: absolute;
+    margin-top: -90px;
+    clip-path: polygon(0px 0, 91% 0, 100% 95%, 0% 100%);
+    overflow: hidden;
+    @media #{$Small-Desktop} {   
+        clip-path: polygon(0px 0, 88% 0, 100% 95%, 0% 100%);
+        max-width: 95%;
+    }
+    @media #{$IpadP} {  
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        position: relative;
+        margin: -90px auto 0;
+    }
+    &::before {
+        content: '';
+        width: 243px;
+        max-width: 243px;
+        height: 100%;
+        background: url(../assets/shape_img.png) no-repeat;
+        background-size: 263px;
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: -1;
+        @media #{$IpadP} {  
+            right: -120px;
+        }
+    }
+    @media #{$PhoneL} {   
+        margin: -90px auto 0;
+        left: 0;
+        right: 0;
+    }
+    .search-title-text {
+        color: $white-color;
+        font-size: 24px;
+        line-height: 26px;
+        padding-bottom: 38px;
+        text-transform: uppercase;
+        font-weight: 600;
+        @media #{$PhoneL} {  
+            font-size: 18px;
+            line-height: 22px;
+            padding-bottom: 20px;
+        }
+    }
+    .search-product-form {
+        display: flex;
+        align-items: center;
+        @media #{$PhoneL} {  
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .form-group {
+            padding-right: 16px;
+            max-width: 234px;
+            @media #{$PhoneL} {  
+                padding: 0 0 16px;
+                max-width: 100%;
+            }
+        }
+        .search-btn {
+            button {
+                height: 40px;
+                width: 175px;
+                padding: 9px 20px;
+            }
+        }
+    }
+}
+
+/** search block **/
+.services-section {
+    background: $white-color;
+    padding: 100px 0;
+    margin-top: 90px;
+    @media #{$IpadP} {  
+        margin-top: 0;
+    }
+    @media #{$PhoneL} {  
+        padding: 100px 0 0;
+    }
+    .service-items-block {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 42px;
+        height: 100%;
+        @media #{$IpadP} { 
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: 30px;
+            grid-row-gap: 30px;
+        }
+        @media #{$PhoneL} { 
+            grid-template-columns: 1fr;
+        }
+        .service-item {
+            .img-block {
+                background: $lightgray-e3;
+                padding: 16px;
+                height: 100%;
+                max-height: 454px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 58px;
+                @media #{$Small-Laptop} {  
+                    height: 340px;
+                    max-height: 340px;
+                    margin-bottom: 40px;
+                }
+                @media #{$IpadP} {  
+                    height: 320px;
+                    max-height: 320px;
+                    margin-bottom: 35px;
+                }
+                @media #{$PhoneL} {  
+                    height: auto;
+                    margin-bottom: 30px;
+                    max-height: 100%;
+                }
+                figure {
+                    max-width: 340px;
+                    @media #{$PhoneL} {  
+                        max-width: 280px;
+                    }
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+            .item-title {
+                font-size: 38px;
+                line-height: 40px;
+                font-weight: 600;
+                letter-spacing: -0.38px;
+                color: $darkgray-38;
+                padding-bottom: 22px;
+                text-transform: uppercase;
+                @media #{$Small-Laptop} {  
+                    font-size: 30px;
+                    line-height: 32px;
+                    padding-bottom: 20px;
+                }
+                @media #{$PhoneL} {  
+                    font-size: 24px;
+                    line-height: 26px;
+                    padding-bottom: 16px;
+                }
+            }
+            .item-viewmore-link {
+                font-size: 19px;
+                line-height: 21px;
+                letter-spacing: -0.19px;
+                color: $darkgray-38;
+                text-transform: uppercase;
+                cursor: pointer;
+                position: relative;
+                border-width: 170px;
+                border-top: 2px solid $darkgray-38;
+                transition: all 0.5s ease;
+                padding-top: 24px;
+                display: inline-block;
+                @media #{$PhoneL} {  
+                    font-size: 15px;
+                    line-height: 17px;
+                    padding-top: 16px;
+                }
+                &::after {
+                    content: '';
+                    background: url(../assets/ico_nextarrow.svg) no-repeat 0 0;
+                    background-size: 12px;
+                    width: 12px;
+                    height: 12px;
+                    margin-left: 6px;
+                    display: inline-block;
+                    transform: rotate(225deg);
+                }
+                &:hover {
+                    border-color: $primary-color;
+                    color: $primary-color;
+                    &::after { 
+                        background: url(../assets/ico_nextarrow.svg) no-repeat 0 0;
+                    }
+                }
+            }
+        }
+    }
+}
